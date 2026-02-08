@@ -85,7 +85,7 @@ const exportTraExcel = async (res, fechaInicio, fechaFin) => {
 /* =========================
    EXPORTAR ACOMPAÑANTES
 ========================= */
-const exportAcompanantesExcel = async (res, fechaInicio, fechaFin) => {
+  const exportAcompanantesExcel = async (res, fechaInicio, fechaFin) => {
   const query = `
     SELECT
       a.id,

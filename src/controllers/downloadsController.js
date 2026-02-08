@@ -9,7 +9,7 @@ const downloadsService = require('../services/downloadsService');
  */
 const downloadForms = async (req, res) => {
   try {
-    const { fecha_inicio, fecha_fin, tipo } = req.query;
+    const { tipo, fecha_inicio, fecha_fin } = req.query;
 
     // 🔹 Validaciones básicas
     if (!fecha_inicio || !fecha_fin || !tipo) {
@@ -26,15 +26,15 @@ const downloadForms = async (req, res) => {
 
     // 🔹 Ruteo por tipo de registro
     switch (tipo) {
-      case 'TRA':
+      case 'tra':
         await downloadsService.exportTraExcel(res, fecha_inicio, fecha_fin);
         return;
 
-      case 'CODIGO':
+      case 'conducta':
         await downloadsService.exportCodigoConductaExcel(res, fecha_inicio, fecha_fin);
         return;
 
-      case 'ACOMPANANTES':
+      case 'acompanantes':
         await downloadsService.exportAcompanantesExcel(res, fecha_inicio, fecha_fin);
         return;
 
