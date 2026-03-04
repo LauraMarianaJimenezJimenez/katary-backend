@@ -29,7 +29,8 @@ const exportTraExcel = async (res, fechaInicio, fechaFin) => {
       fecha_registro,
       created_at
     FROM tra_huesped
-    WHERE created_at BETWEEN $1 AND $2
+    WHERE created_at >= $1::date
+    AND created_at < ($2::date + interval '1 day')
     ORDER BY created_at ASC
   `;
 
@@ -98,7 +99,8 @@ const exportTraExcel = async (res, fechaInicio, fechaFin) => {
       a.created_at
     FROM tra_acompanante a
     JOIN tra_huesped h ON h.id = a.tra_huesped_id
-    WHERE h.created_at BETWEEN $1 AND $2
+    WHERE h.created_at >= $1::date
+    AND h.created_at < ($2::date + interval '1 day')
     ORDER BY a.created_at ASC
   `;
 
@@ -152,7 +154,8 @@ const exportCodigoConductaExcel = async (res, fechaInicio, fechaFin) => {
       acepta_manual,
       created_at
     FROM codigo_conducta
-    WHERE created_at BETWEEN $1 AND $2
+    WHERE created_at >= $1::date
+    AND created_at < ($2::date + interval '1 day')
     ORDER BY created_at ASC
   `;
 
